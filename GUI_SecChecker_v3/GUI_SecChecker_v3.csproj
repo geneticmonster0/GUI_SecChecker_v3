@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataBases\SQL_Executor.cs" />
     <Compile Include="Forms\f_Main.cs">
       <SubType>Form</SubType>
     </Compile>
