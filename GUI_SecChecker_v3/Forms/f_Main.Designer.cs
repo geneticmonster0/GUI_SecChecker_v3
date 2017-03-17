@@ -34,17 +34,17 @@
             this.bt_BrowseSumReport = new System.Windows.Forms.Button();
             this.bt_BrowseSEPReport = new System.Windows.Forms.Button();
             this.tb_PathSCCMReport = new System.Windows.Forms.TextBox();
-            this.bt_BrowseKSCReport = new System.Windows.Forms.Button();
+            this.bt_BrowseKESReport = new System.Windows.Forms.Button();
             this.tb_PathADReport = new System.Windows.Forms.TextBox();
             this.tb_PathSumReport = new System.Windows.Forms.TextBox();
             this.tb_PathSEPReport = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.tb_PathKSCReport = new System.Windows.Forms.TextBox();
+            this.tb_PathKESReport = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.bt_SortArmAndServ = new System.Windows.Forms.Button();
             this.bt_ExportEachResultToExcel = new System.Windows.Forms.Button();
-            this.bt_ExportMainResultToExcel = new System.Windows.Forms.Button();
+            this.bt_CreateReport = new System.Windows.Forms.Button();
             this.bt_GetAllHost = new System.Windows.Forms.Button();
             this.bt_BrowseMPReport = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -55,6 +55,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.tb_TerBank = new System.Windows.Forms.TextBox();
+            this.bt_BrowseADOmegaReport = new System.Windows.Forms.Button();
+            this.tb_PathADOmegaReport = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bt_TestSQLCon
@@ -111,17 +115,18 @@
             this.tb_PathSCCMReport.Name = "tb_PathSCCMReport";
             this.tb_PathSCCMReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathSCCMReport.TabIndex = 46;
-            this.tb_PathSCCMReport.Text = "C:\\Users\\KartashevVS\\Desktop\\2016-11-21\\SZB\\SCCM";
+            this.tb_PathSCCMReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\SE" +
+    "P\\computer_status_export_60BB1FC54548471596E0F75DF2CF674C.csv";
             // 
-            // bt_BrowseKSCReport
+            // bt_BrowseKESReport
             // 
-            this.bt_BrowseKSCReport.Location = new System.Drawing.Point(287, 293);
-            this.bt_BrowseKSCReport.Name = "bt_BrowseKSCReport";
-            this.bt_BrowseKSCReport.Size = new System.Drawing.Size(75, 23);
-            this.bt_BrowseKSCReport.TabIndex = 56;
-            this.bt_BrowseKSCReport.Text = "Browse";
-            this.bt_BrowseKSCReport.UseVisualStyleBackColor = true;
-            this.bt_BrowseKSCReport.Click += new System.EventHandler(this.bt_BrowseKSCReport_Click);
+            this.bt_BrowseKESReport.Location = new System.Drawing.Point(287, 293);
+            this.bt_BrowseKESReport.Name = "bt_BrowseKESReport";
+            this.bt_BrowseKESReport.Size = new System.Drawing.Size(75, 23);
+            this.bt_BrowseKESReport.TabIndex = 56;
+            this.bt_BrowseKESReport.Text = "Browse";
+            this.bt_BrowseKESReport.UseVisualStyleBackColor = true;
+            this.bt_BrowseKESReport.Click += new System.EventHandler(this.bt_BrowseKSCReport_Click);
             // 
             // tb_PathADReport
             // 
@@ -129,7 +134,8 @@
             this.tb_PathADReport.Name = "tb_PathADReport";
             this.tb_PathADReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathADReport.TabIndex = 47;
-            this.tb_PathADReport.Text = "C:\\Users\\KartashevVS\\Desktop\\2016-11-21\\SZB\\AD";
+            this.tb_PathADReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\AD" +
+    "\\All_Comps_hq.szb.sbrf.ru.csv";
             // 
             // tb_PathSumReport
             // 
@@ -144,7 +150,8 @@
             this.tb_PathSEPReport.Name = "tb_PathSEPReport";
             this.tb_PathSEPReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathSEPReport.TabIndex = 43;
-            this.tb_PathSEPReport.Text = "C:\\Users\\KartashevVS\\Desktop\\2016-11-21\\SZB\\SEP";
+            this.tb_PathSEPReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\SE" +
+    "P\\computer_status_export_60BB1FC54548471596E0F75DF2CF674C.csv";
             // 
             // label14
             // 
@@ -155,13 +162,14 @@
             this.label14.TabIndex = 40;
             this.label14.Text = "Path To SCCM Report";
             // 
-            // tb_PathKSCReport
+            // tb_PathKESReport
             // 
-            this.tb_PathKSCReport.Location = new System.Drawing.Point(22, 295);
-            this.tb_PathKSCReport.Name = "tb_PathKSCReport";
-            this.tb_PathKSCReport.Size = new System.Drawing.Size(209, 20);
-            this.tb_PathKSCReport.TabIndex = 45;
-            this.tb_PathKSCReport.Text = "C:\\Users\\KartashevVS\\Desktop\\2016-11-21\\SZB\\KES";
+            this.tb_PathKESReport.Location = new System.Drawing.Point(22, 295);
+            this.tb_PathKESReport.Name = "tb_PathKESReport";
+            this.tb_PathKESReport.Size = new System.Drawing.Size(209, 20);
+            this.tb_PathKESReport.TabIndex = 45;
+            this.tb_PathKESReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\KS" +
+    "C\\sksc-06.csv";
             // 
             // label19
             // 
@@ -184,7 +192,7 @@
             // bt_SortArmAndServ
             // 
             this.bt_SortArmAndServ.Enabled = false;
-            this.bt_SortArmAndServ.Location = new System.Drawing.Point(573, 326);
+            this.bt_SortArmAndServ.Location = new System.Drawing.Point(757, 327);
             this.bt_SortArmAndServ.Name = "bt_SortArmAndServ";
             this.bt_SortArmAndServ.Size = new System.Drawing.Size(75, 56);
             this.bt_SortArmAndServ.TabIndex = 54;
@@ -193,30 +201,31 @@
             // 
             // bt_ExportEachResultToExcel
             // 
-            this.bt_ExportEachResultToExcel.Location = new System.Drawing.Point(573, 225);
+            this.bt_ExportEachResultToExcel.Location = new System.Drawing.Point(757, 226);
             this.bt_ExportEachResultToExcel.Name = "bt_ExportEachResultToExcel";
             this.bt_ExportEachResultToExcel.Size = new System.Drawing.Size(75, 56);
             this.bt_ExportEachResultToExcel.TabIndex = 53;
             this.bt_ExportEachResultToExcel.Text = "bt_ExportEachResultToExcel";
             this.bt_ExportEachResultToExcel.UseVisualStyleBackColor = true;
             // 
-            // bt_ExportMainResultToExcel
+            // bt_CreateReport
             // 
-            this.bt_ExportMainResultToExcel.Enabled = false;
-            this.bt_ExportMainResultToExcel.Location = new System.Drawing.Point(573, 146);
-            this.bt_ExportMainResultToExcel.Name = "bt_ExportMainResultToExcel";
-            this.bt_ExportMainResultToExcel.Size = new System.Drawing.Size(75, 56);
-            this.bt_ExportMainResultToExcel.TabIndex = 52;
-            this.bt_ExportMainResultToExcel.Text = "Export Main Result To Excel";
-            this.bt_ExportMainResultToExcel.UseVisualStyleBackColor = true;
+            this.bt_CreateReport.Enabled = false;
+            this.bt_CreateReport.Location = new System.Drawing.Point(757, 147);
+            this.bt_CreateReport.Name = "bt_CreateReport";
+            this.bt_CreateReport.Size = new System.Drawing.Size(75, 56);
+            this.bt_CreateReport.TabIndex = 52;
+            this.bt_CreateReport.Text = "Подготовить отчет";
+            this.bt_CreateReport.UseVisualStyleBackColor = true;
+            this.bt_CreateReport.Click += new System.EventHandler(this.bt_CreateReport_Click);
             // 
             // bt_GetAllHost
             // 
-            this.bt_GetAllHost.Location = new System.Drawing.Point(573, 56);
+            this.bt_GetAllHost.Location = new System.Drawing.Point(757, 57);
             this.bt_GetAllHost.Name = "bt_GetAllHost";
             this.bt_GetAllHost.Size = new System.Drawing.Size(75, 56);
             this.bt_GetAllHost.TabIndex = 57;
-            this.bt_GetAllHost.Text = "1) Get All Host";
+            this.bt_GetAllHost.Text = "Загрузить CSV в БД";
             this.bt_GetAllHost.UseVisualStyleBackColor = true;
             this.bt_GetAllHost.Click += new System.EventHandler(this.bt_GetAllHost_Click);
             // 
@@ -263,7 +272,8 @@
             this.tb_PathMPReport.Name = "tb_PathMPReport";
             this.tb_PathMPReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathMPReport.TabIndex = 44;
-            this.tb_PathMPReport.Text = "C:\\Users\\KartashevVS\\Desktop\\2016-11-21\\SZB\\MP";
+            this.tb_PathMPReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\MP" +
+    "\\p1.csv";
             // 
             // label9
             // 
@@ -301,28 +311,67 @@
             this.label6.TabIndex = 35;
             this.label6.Text = "AD";
             // 
+            // tb_TerBank
+            // 
+            this.tb_TerBank.Location = new System.Drawing.Point(60, 18);
+            this.tb_TerBank.Name = "tb_TerBank";
+            this.tb_TerBank.Size = new System.Drawing.Size(100, 20);
+            this.tb_TerBank.TabIndex = 70;
+            this.tb_TerBank.Text = "SZB";
+            // 
+            // bt_BrowseADOmegaReport
+            // 
+            this.bt_BrowseADOmegaReport.Location = new System.Drawing.Point(665, 56);
+            this.bt_BrowseADOmegaReport.Name = "bt_BrowseADOmegaReport";
+            this.bt_BrowseADOmegaReport.Size = new System.Drawing.Size(75, 23);
+            this.bt_BrowseADOmegaReport.TabIndex = 73;
+            this.bt_BrowseADOmegaReport.Text = "Browse";
+            this.bt_BrowseADOmegaReport.UseVisualStyleBackColor = true;
+            // 
+            // tb_PathADOmegaReport
+            // 
+            this.tb_PathADOmegaReport.Location = new System.Drawing.Point(400, 59);
+            this.tb_PathADOmegaReport.Name = "tb_PathADOmegaReport";
+            this.tb_PathADOmegaReport.Size = new System.Drawing.Size(209, 20);
+            this.tb_PathADOmegaReport.TabIndex = 72;
+            this.tb_PathADOmegaReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\AD" +
+    "\\All_Comps_hq.szb.sbrf.ru.csv";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(599, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 13);
+            this.label1.TabIndex = 71;
+            this.label1.Text = "AD OMEGA";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 648);
+            this.Controls.Add(this.bt_BrowseADOmegaReport);
+            this.Controls.Add(this.tb_PathADOmegaReport);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tb_TerBank);
             this.Controls.Add(this.bt_TestSQLCon);
             this.Controls.Add(this.bt_BrowseSCCMReport);
             this.Controls.Add(this.bt_BrowseADReport);
             this.Controls.Add(this.bt_BrowseSumReport);
             this.Controls.Add(this.bt_BrowseSEPReport);
             this.Controls.Add(this.tb_PathSCCMReport);
-            this.Controls.Add(this.bt_BrowseKSCReport);
+            this.Controls.Add(this.bt_BrowseKESReport);
             this.Controls.Add(this.tb_PathADReport);
             this.Controls.Add(this.tb_PathSumReport);
             this.Controls.Add(this.tb_PathSEPReport);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.tb_PathKSCReport);
+            this.Controls.Add(this.tb_PathKESReport);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.bt_SortArmAndServ);
             this.Controls.Add(this.bt_ExportEachResultToExcel);
-            this.Controls.Add(this.bt_ExportMainResultToExcel);
+            this.Controls.Add(this.bt_CreateReport);
             this.Controls.Add(this.bt_GetAllHost);
             this.Controls.Add(this.bt_BrowseMPReport);
             this.Controls.Add(this.label13);
@@ -348,17 +397,17 @@
         private System.Windows.Forms.Button bt_BrowseSumReport;
         private System.Windows.Forms.Button bt_BrowseSEPReport;
         private System.Windows.Forms.TextBox tb_PathSCCMReport;
-        private System.Windows.Forms.Button bt_BrowseKSCReport;
+        private System.Windows.Forms.Button bt_BrowseKESReport;
         private System.Windows.Forms.TextBox tb_PathADReport;
         private System.Windows.Forms.TextBox tb_PathSumReport;
         private System.Windows.Forms.TextBox tb_PathSEPReport;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox tb_PathKSCReport;
+        private System.Windows.Forms.TextBox tb_PathKESReport;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button bt_SortArmAndServ;
         private System.Windows.Forms.Button bt_ExportEachResultToExcel;
-        private System.Windows.Forms.Button bt_ExportMainResultToExcel;
+        private System.Windows.Forms.Button bt_CreateReport;
         private System.Windows.Forms.Button bt_GetAllHost;
         private System.Windows.Forms.Button bt_BrowseMPReport;
         private System.Windows.Forms.Label label13;
@@ -369,6 +418,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tb_TerBank;
+        private System.Windows.Forms.Button bt_BrowseADOmegaReport;
+        private System.Windows.Forms.TextBox tb_PathADOmegaReport;
+        private System.Windows.Forms.Label label1;
     }
 }
 

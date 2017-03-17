@@ -47,6 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>..\..\..\..\..\SecChecker_v2\gui_secchecker_v2\bin\Debug\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\..\..\..\SecChecker_v2\gui_secchecker_v2\bin\Debug\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -102,20 +108,6 @@
     <Content Include="DataBases\db_SecChecker_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>db_SecChecker.mdf</DependentUpon>
-    </Content>
-    <Content Include="DataBases\db_SecChecker_v2.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DataBases\db_SecChecker_v2_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>db_SecChecker_v2.mdf</DependentUpon>
-    </Content>
-    <Content Include="DataBases\db_SecChecker_v3.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DataBases\db_SecChecker_v3_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>db_SecChecker_v3.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
