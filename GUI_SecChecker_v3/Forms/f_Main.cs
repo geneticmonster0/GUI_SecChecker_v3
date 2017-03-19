@@ -74,52 +74,110 @@ namespace GUI_SecChecker_v3
             timeStamp = DateTime.Now.ToString("s").Replace('-', '_').Replace(':', '_');
 
             string tblADName = tb_TerBank.Text + "_AD_" + timeStamp;
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_CreateTable_AD", "@TableName", tblADName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_Insert_AD", "@TableName", tblADName, "@FilePath", tb_PathADReport.Text);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_AD", "@TableName", tblADName);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_AD", "@TableName", tblADName, "@FilePath", tb_PathADReport.Text);
 
             string tblADOmegaName = "OMEGA" + "_AD_" + timeStamp;
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_CreateTable_AD", "@TableName", tblADName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_Insert_AD", "@TableName", tblADName, "@FilePath", tb_PathADReport.Text);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_AD", "@TableName", tblADName);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_AD", "@TableName", tblADName, "@FilePath", tb_PathADReport.Text);
 
             string tblKESName = tb_TerBank.Text + "_KES_" + timeStamp;
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_CreateTable_KES", "@TableName", tblKESName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_Insert_KES", "@TableName", tblKESName, "@FilePath", tb_PathKESReport.Text);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_KES", "@TableName", tblKESName);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_KES", "@TableName", tblKESName, "@FilePath", tb_PathKESReport.Text);
 
             string tblMPName = tb_TerBank.Text + "_MP_" + timeStamp;
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_CreateTable_MP", "@TableName", tblMPName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_Insert_MP", "@TableName", tblMPName, "@FilePath", tb_PathMPReport.Text);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_MP", "@TableName", tblMPName);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_MP", "@TableName", tblMPName, "@FilePath", tb_PathMPReport.Text);
 
             string tblSCCMName = tb_TerBank.Text + "_SCCM_" + timeStamp;
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_CreateTable_SCCM", "@TableName", tblSCCMName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_Insert_SCCM", "@TableName", tblSCCMName, "@FilePath", tb_PathSCCMReport.Text);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_SCCM", "@TableName", tblSCCMName);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_SCCM", "@TableName", tblSCCMName, "@FilePath", tb_PathSCCMReport.Text);
 
             string tblSEPName = tb_TerBank.Text + "_SEP_" + timeStamp;
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_CreateTable_SEP", "@TableName", tblSEPName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_Insert_SEP", "@TableName", tblSEPName, "@FilePath", tb_PathSEPReport.Text);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_SEP", "@TableName", tblSEPName);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_SEP", "@TableName", tblSEPName, "@FilePath", tb_PathSEPReport.Text);
 
 
 
         }
 
         private void bt_CreateReport_Click(object sender, EventArgs e)
-        {                        
-            SQL_Executor.Exec_SPU_With_Multple_Parameters(connString, "SPU_SELECT_PROBLEM_HOSTS", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+        {
+            timeStamp = "2017_03_17T17_27_14";
+            //SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_SELECT_PROBLEM_HOSTS", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
-            var workbook = new XLWorkbook("report_template.xlsx");
+            DataSet ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_AD_SCCM", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+
+            DataSet ds_ProblemArm_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_AVPO", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+
+            DataSet ds_ProblemArm_SUMM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_SUMM_KES", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+
+            var workbook = new XLWorkbook("report_template_ARM.xlsx");
             var ws1 = workbook.Worksheet(1);
 
             ws1.Cell("A4").Value = tb_TerBank.Text;
-            ws1.Cell("B4").Value = tblWithAllHost.Select("operatingSystem NOT LIKE '%Server%'").Length;
-            ws1.Cell("D4").Value = tblWithHostNotInAD_ARM.Rows.Count;
-            ws1.Cell("E4").Value = tblWithCleanSCCMReport_ARM.Rows.Count;
-            ws1.Cell("F4").Value = tblWithHostWithoutAVPO_ARM.Rows.Count;
-            ws1.Cell("G4").Value = tblWithHostOldClientKES_ARM.Rows.Count + tblWithHostOldClientSEP_ARM.Rows.Count;
-            ws1.Cell("H4").Value = tblWithHostOldBaseKES_ARM.Rows.Count + tblWithHostOldBaseSEP_ARM.Rows.Count;
+            ws1.Cell("B4").Value = ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[0].Rows.Count;
+            ws1.Cell("D4").Value = ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[1].Rows.Count;
+            ws1.Cell("E4").Value = ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[2].Rows.Count;
+            ws1.Cell("F4").Value = ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[3].Rows.Count;
 
-            GetTblWithAllARM_NotIB();
+            ws1.Cell("G4").Value = ds_ProblemArm_ProblemAVPO.Tables[0].Rows.Count;
+            ws1.Cell("H4").Value = ds_ProblemArm_ProblemAVPO.Tables[1].Rows.Count;
 
-            ws1.Cell("I4").Value = tblWithAllARM_NotIB.Rows.Count; ////////Подсчет общего кол-ва АРМ не сотв ИБ
+            ws1.Cell("I4").Value = ds_ProblemArm_SUMM.Tables[0].Rows.Count;
 
+            ws1.Cell("K4").Value = timeStamp;
+
+            ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[0].TableName = "All_ARM";
+            ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[1].TableName = "Without_AD";
+            ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[2].TableName = "Without_SCCM";
+            ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[3].TableName = "Without_AVPO";
+
+            workbook.Worksheets.Add(ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO);
+
+            ds_ProblemArm_ProblemAVPO.Tables[0].TableName = "KES_Old_Client";
+            ds_ProblemArm_ProblemAVPO.Tables[1].TableName = "KES_Old_Base";
+
+            workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO);
+
+            workbook.SaveAs("ARM_Rep.xlsx");
+
+
+            DataSet ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_AD_SCCM", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+
+            DataSet ds_ProblemServ_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_AVPO", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+
+            DataSet ds_ProblemServ_SUMM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_SUMM_SEP", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+
+            var workbook1 = new XLWorkbook("report_template_SERV.xlsx");
+            var ws2 = workbook.Worksheet(2);
+
+            ws1.Cell("A4").Value = tb_TerBank.Text;
+            ws1.Cell("B4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[0].Rows.Count;
+            ws1.Cell("D4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[1].Rows.Count;
+            ws1.Cell("E4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[2].Rows.Count;
+            ws1.Cell("F4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[3].Rows.Count;
+
+            ws1.Cell("G4").Value = ds_ProblemServ_ProblemAVPO.Tables[2].Rows.Count;
+            ws1.Cell("H4").Value = ds_ProblemServ_ProblemAVPO.Tables[3].Rows.Count;
+
+            ws1.Cell("I4").Value = ds_ProblemServ_SUMM.Tables[0].Rows.Count;
+
+            ws1.Cell("K4").Value = timeStamp;
+
+            ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[0].TableName = "All_SERV";
+            ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[1].TableName = "Without_AD";
+            ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[2].TableName = "Without_SCCM";
+            ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[3].TableName = "Without_AVPO";
+
+            workbook.Worksheets.Add(ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO);
+
+            ds_ProblemServ_ProblemAVPO.Tables[2].TableName = "SEP_Old_Client";
+            ds_ProblemServ_ProblemAVPO.Tables[3].TableName = "SEP_Old_Base";
+
+            workbook.Worksheets.Add(ds_ProblemServ_ProblemAVPO);
+
+            workbook.SaveAs("SERV_Rep.xlsx");
 
 
         }

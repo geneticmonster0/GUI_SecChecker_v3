@@ -9,7 +9,7 @@ namespace GUI_SecChecker_v3.DataBases
 {
     static class SQL_Executor
     {
-        static public void Exec_SPU_With_Multple_Parameters(string connString, string spuName, params string[] paramsAndValue)
+        static public void Exec_SPU_With_Multple_Parameters_NoReturn(string connString, string spuName, params string[] paramsAndValue)
         {
             using (SqlConnection con = new SqlConnection(connString))
             {
@@ -28,6 +28,33 @@ namespace GUI_SecChecker_v3.DataBases
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        static public DataSet Exec_SPU_With_Multple_Parameters_Return_DS(string connString, string spuName, params string[] paramsAndValue)
+        {
+            DataSet ds = new DataSet();
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand(spuName, con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
+                    for (int i = 0; i < paramsAndValue.Length - 1; i = i + 2)
+                    {
+                        cmd.Parameters.Add(paramsAndValue[i], SqlDbType.NVarChar).Value = paramsAndValue[i + 1];
+                    }
+
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    
+
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    con.Close();
+                }
+            }
+
+            return ds;
         }
     }
 }

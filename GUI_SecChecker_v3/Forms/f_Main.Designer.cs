@@ -115,8 +115,8 @@
             this.tb_PathSCCMReport.Name = "tb_PathSCCMReport";
             this.tb_PathSCCMReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathSCCMReport.TabIndex = 46;
-            this.tb_PathSCCMReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\SE" +
-    "P\\computer_status_export_60BB1FC54548471596E0F75DF2CF674C.csv";
+            this.tb_PathSCCMReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\SC" +
+    "CM\\SCCM.csv";
             // 
             // bt_BrowseKESReport
             // 
@@ -210,7 +210,6 @@
             // 
             // bt_CreateReport
             // 
-            this.bt_CreateReport.Enabled = false;
             this.bt_CreateReport.Location = new System.Drawing.Point(757, 147);
             this.bt_CreateReport.Name = "bt_CreateReport";
             this.bt_CreateReport.Size = new System.Drawing.Size(75, 56);
