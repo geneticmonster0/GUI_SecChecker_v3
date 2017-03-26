@@ -43,7 +43,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.bt_LoadRevision = new System.Windows.Forms.Button();
-            this.bt_ExportEachResultToExcel = new System.Windows.Forms.Button();
             this.bt_CreateReport = new System.Windows.Forms.Button();
             this.bt_GetAllHost = new System.Windows.Forms.Button();
             this.bt_BrowseMPReport = new System.Windows.Forms.Button();
@@ -62,6 +61,7 @@
             this.chb_isKESOnARM = new System.Windows.Forms.CheckBox();
             this.dgv_Revisions = new System.Windows.Forms.DataGridView();
             this.bt_InnerRevision = new System.Windows.Forms.Button();
+            this.bt_Export_Selected_Revision = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Revisions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -199,22 +199,13 @@
             this.bt_LoadRevision.UseVisualStyleBackColor = true;
             this.bt_LoadRevision.Click += new System.EventHandler(this.bt_LoadRevision_Click);
             // 
-            // bt_ExportEachResultToExcel
-            // 
-            this.bt_ExportEachResultToExcel.Location = new System.Drawing.Point(757, 226);
-            this.bt_ExportEachResultToExcel.Name = "bt_ExportEachResultToExcel";
-            this.bt_ExportEachResultToExcel.Size = new System.Drawing.Size(75, 56);
-            this.bt_ExportEachResultToExcel.TabIndex = 53;
-            this.bt_ExportEachResultToExcel.Text = "bt_ExportEachResultToExcel";
-            this.bt_ExportEachResultToExcel.UseVisualStyleBackColor = true;
-            // 
             // bt_CreateReport
             // 
             this.bt_CreateReport.Location = new System.Drawing.Point(757, 147);
             this.bt_CreateReport.Name = "bt_CreateReport";
-            this.bt_CreateReport.Size = new System.Drawing.Size(75, 56);
+            this.bt_CreateReport.Size = new System.Drawing.Size(75, 84);
             this.bt_CreateReport.TabIndex = 52;
-            this.bt_CreateReport.Text = "Подготовить отчет";
+            this.bt_CreateReport.Text = "Подготовить отчет Для текущей выгрузки";
             this.bt_CreateReport.UseVisualStyleBackColor = true;
             this.bt_CreateReport.Click += new System.EventHandler(this.bt_CreateReport_Click);
             // 
@@ -355,7 +346,11 @@
             // 
             // dgv_Revisions
             // 
+            this.dgv_Revisions.AllowUserToAddRows = false;
+            this.dgv_Revisions.AllowUserToDeleteRows = false;
             this.dgv_Revisions.AllowUserToOrderColumns = true;
+            this.dgv_Revisions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv_Revisions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgv_Revisions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Revisions.Location = new System.Drawing.Point(938, 59);
             this.dgv_Revisions.Name = "dgv_Revisions";
@@ -371,6 +366,16 @@
             this.bt_InnerRevision.Text = "Сравнить две проверки";
             this.bt_InnerRevision.UseVisualStyleBackColor = true;
             this.bt_InnerRevision.Click += new System.EventHandler(this.bt_InnerRevision_Click);
+            // 
+            // bt_Export_Selected_Revision
+            // 
+            this.bt_Export_Selected_Revision.Location = new System.Drawing.Point(1155, 484);
+            this.bt_Export_Selected_Revision.Name = "bt_Export_Selected_Revision";
+            this.bt_Export_Selected_Revision.Size = new System.Drawing.Size(75, 56);
+            this.bt_Export_Selected_Revision.TabIndex = 53;
+            this.bt_Export_Selected_Revision.Text = "Выгрузить выбранный отчет";
+            this.bt_Export_Selected_Revision.UseVisualStyleBackColor = true;
+            this.bt_Export_Selected_Revision.Click += new System.EventHandler(this.bt_Export_Selected_Revision_Click);
             // 
             // Form1
             // 
@@ -398,8 +403,8 @@
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.bt_LoadRevision);
+            this.Controls.Add(this.bt_Export_Selected_Revision);
             this.Controls.Add(this.bt_InnerRevision);
-            this.Controls.Add(this.bt_ExportEachResultToExcel);
             this.Controls.Add(this.bt_CreateReport);
             this.Controls.Add(this.bt_GetAllHost);
             this.Controls.Add(this.bt_BrowseMPReport);
@@ -436,7 +441,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button bt_LoadRevision;
-        private System.Windows.Forms.Button bt_ExportEachResultToExcel;
         private System.Windows.Forms.Button bt_CreateReport;
         private System.Windows.Forms.Button bt_GetAllHost;
         private System.Windows.Forms.Button bt_BrowseMPReport;
@@ -455,6 +459,7 @@
         private System.Windows.Forms.CheckBox chb_isKESOnARM;
         private System.Windows.Forms.DataGridView dgv_Revisions;
         private System.Windows.Forms.Button bt_InnerRevision;
+        private System.Windows.Forms.Button bt_Export_Selected_Revision;
     }
 }
 
