@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -75,27 +77,54 @@ namespace GUI_SecChecker_v3
 
             string tblADName = tb_TerBank.Text + "_AD_" + timeStamp;
             SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_AD", "@TableName", tblADName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_AD", "@TableName", tblADName, "@FilePath", tb_PathADReport.Text);
 
+            var dirInfo = new DirectoryInfo(tb_PathADReport.Text);
+
+            foreach (var file in dirInfo.GetFiles("*.csv", SearchOption.TopDirectoryOnly))
+            {
+                SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_AD", "@TableName", tblADName, "@FilePath", file.FullName);
+            }
+
+
+            dirInfo = new DirectoryInfo(tb_PathADOmegaReport.Text);
             string tblADOmegaName = "OMEGA" + "_AD_" + timeStamp;
-            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_AD", "@TableName", tblADName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_AD", "@TableName", tblADName, "@FilePath", tb_PathADReport.Text);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_AD", "@TableName", tblADOmegaName);
+            foreach (var file in dirInfo.GetFiles("*.csv", SearchOption.TopDirectoryOnly))
+            {
+                SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_AD", "@TableName", tblADOmegaName, "@FilePath", file.FullName);
+            }
 
             string tblKESName = tb_TerBank.Text + "_KES_" + timeStamp;
             SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_KES", "@TableName", tblKESName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_KES", "@TableName", tblKESName, "@FilePath", tb_PathKESReport.Text);
+            dirInfo = new DirectoryInfo(tb_PathKESReport.Text);
+            foreach (var file in dirInfo.GetFiles("*.csv", SearchOption.TopDirectoryOnly))
+            {
+                SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_KES", "@TableName", tblKESName, "@FilePath", file.FullName);
+            }
 
             string tblMPName = tb_TerBank.Text + "_MP_" + timeStamp;
             SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_MP", "@TableName", tblMPName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_MP", "@TableName", tblMPName, "@FilePath", tb_PathMPReport.Text);
+            dirInfo = new DirectoryInfo(tb_PathMPReport.Text);
+            foreach (var file in dirInfo.GetFiles("*.csv", SearchOption.TopDirectoryOnly))
+            {
+                SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_MP", "@TableName", tblMPName, "@FilePath", file.FullName);
+            }
 
             string tblSCCMName = tb_TerBank.Text + "_SCCM_" + timeStamp;
             SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_SCCM", "@TableName", tblSCCMName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_SCCM", "@TableName", tblSCCMName, "@FilePath", tb_PathSCCMReport.Text);
+            dirInfo = new DirectoryInfo(tb_PathSCCMReport.Text);
+            foreach (var file in dirInfo.GetFiles("*.csv", SearchOption.TopDirectoryOnly))
+            {
+                SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_SCCM", "@TableName", tblSCCMName, "@FilePath", file.FullName);
+            }
 
             string tblSEPName = tb_TerBank.Text + "_SEP_" + timeStamp;
             SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_CreateTable_SEP", "@TableName", tblSEPName);
-            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_SEP", "@TableName", tblSEPName, "@FilePath", tb_PathSEPReport.Text);
+            dirInfo = new DirectoryInfo(tb_PathSEPReport.Text);
+            foreach (var file in dirInfo.GetFiles("*.csv", SearchOption.TopDirectoryOnly))
+            {
+                SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_SEP", "@TableName", tblSEPName, "@FilePath", file.FullName);
+            }
 
 
 
@@ -103,26 +132,43 @@ namespace GUI_SecChecker_v3
 
         private void bt_CreateReport_Click(object sender, EventArgs e)
         {
-            timeStamp = "2017_03_17T17_27_14";
-            //SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_SELECT_PROBLEM_HOSTS", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            //timeStamp = "2017_03_17T17_27_14";
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_SELECT_PROBLEM_HOSTS", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
             DataSet ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_AD_SCCM", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
             DataSet ds_ProblemArm_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_AVPO", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
-            DataSet ds_ProblemArm_SUMM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_SUMM_KES", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            DataSet ds_ProblemArm_SUMM;
 
-            var workbook = new XLWorkbook("report_template_ARM.xlsx");
+            if (chb_isKESOnARM.Checked)
+            {
+                ds_ProblemArm_SUMM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_SUMM_KES", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            }
+            else
+            {
+                ds_ProblemArm_SUMM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_SUMM_SEP", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            }
+            
+
+            var workbook = new XLWorkbook("_report_template_ARM.xlsx");
             var ws1 = workbook.Worksheet(1);
 
             ws1.Cell("A4").Value = tb_TerBank.Text;
-            ws1.Cell("B4").Value = ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[0].Rows.Count;
+            ws1.Cell("B4").Value = ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[0].Rows.Count + ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[1].Rows.Count;
             ws1.Cell("D4").Value = ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[1].Rows.Count;
             ws1.Cell("E4").Value = ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[2].Rows.Count;
             ws1.Cell("F4").Value = ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO.Tables[3].Rows.Count;
-
-            ws1.Cell("G4").Value = ds_ProblemArm_ProblemAVPO.Tables[0].Rows.Count;
-            ws1.Cell("H4").Value = ds_ProblemArm_ProblemAVPO.Tables[1].Rows.Count;
+            if (chb_isKESOnARM.Checked)
+            {
+                ws1.Cell("G4").Value = ds_ProblemArm_ProblemAVPO.Tables[0].Rows.Count;
+                ws1.Cell("H4").Value = ds_ProblemArm_ProblemAVPO.Tables[1].Rows.Count;
+            }
+            else
+            {
+                ws1.Cell("G4").Value = ds_ProblemArm_ProblemAVPO.Tables[2].Rows.Count;
+                ws1.Cell("H4").Value = ds_ProblemArm_ProblemAVPO.Tables[3].Rows.Count;
+            }
 
             ws1.Cell("I4").Value = ds_ProblemArm_SUMM.Tables[0].Rows.Count;
 
@@ -137,47 +183,147 @@ namespace GUI_SecChecker_v3
 
             ds_ProblemArm_ProblemAVPO.Tables[0].TableName = "KES_Old_Client";
             ds_ProblemArm_ProblemAVPO.Tables[1].TableName = "KES_Old_Base";
+            ds_ProblemArm_ProblemAVPO.Tables[2].TableName = "SEP_Old_Client";
+            ds_ProblemArm_ProblemAVPO.Tables[3].TableName = "SEP_Old_Base";
 
-            workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO);
+            if (chb_isKESOnARM.Checked)
+            {
+                workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[0]);
+                workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[1]);
+            }
+            else
+            {
+                workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[2].TableName);
+                workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[3].TableName);
+            }
+            
 
-            workbook.SaveAs("ARM_Rep.xlsx");
+            workbook.SaveAs(tb_TerBank + "_ARM_Rep.xlsx");
 
 
             DataSet ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_AD_SCCM", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
             DataSet ds_ProblemServ_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_AVPO", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
-            DataSet ds_ProblemServ_SUMM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_SUMM_SEP", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            DataSet ds_ProblemServ_SUMM;
 
-            var workbook1 = new XLWorkbook("report_template_SERV.xlsx");
-            var ws2 = workbook.Worksheet(2);
+            if (chb_isKESOnARM.Checked)
+            {
+                ds_ProblemServ_SUMM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_SUMM_SEP", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            }
+            else
+            {
+                ds_ProblemServ_SUMM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_SUMM_KES", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            }
 
-            ws1.Cell("A4").Value = tb_TerBank.Text;
-            ws1.Cell("B4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[0].Rows.Count;
-            ws1.Cell("D4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[1].Rows.Count;
-            ws1.Cell("E4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[2].Rows.Count;
-            ws1.Cell("F4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[3].Rows.Count;
+            var workbook1 = new XLWorkbook(tb_TerBank + "_report_template_SERV.xlsx");
+            var ws2 = workbook1.Worksheet(1);
 
-            ws1.Cell("G4").Value = ds_ProblemServ_ProblemAVPO.Tables[2].Rows.Count;
-            ws1.Cell("H4").Value = ds_ProblemServ_ProblemAVPO.Tables[3].Rows.Count;
+            ws2.Cell("A4").Value = tb_TerBank.Text;
+            ws2.Cell("B4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[0].Rows.Count + ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[1].Rows.Count;
+            ws2.Cell("D4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[1].Rows.Count;
+            ws2.Cell("E4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[2].Rows.Count;
+            ws2.Cell("F4").Value = ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[3].Rows.Count;
 
-            ws1.Cell("I4").Value = ds_ProblemServ_SUMM.Tables[0].Rows.Count;
+            if (chb_isKESOnARM.Checked)
+            {
+                ws2.Cell("G4").Value = ds_ProblemServ_ProblemAVPO.Tables[2].Rows.Count;
+                ws2.Cell("H4").Value = ds_ProblemServ_ProblemAVPO.Tables[3].Rows.Count;
+            }
+            else
+            {
+                ws2.Cell("G4").Value = ds_ProblemServ_ProblemAVPO.Tables[0].Rows.Count;
+                ws2.Cell("H4").Value = ds_ProblemServ_ProblemAVPO.Tables[1].Rows.Count;
+            }
 
-            ws1.Cell("K4").Value = timeStamp;
+            //Trace.WriteLine($"ws2: {ws2}");
+
+            ws2.Cell("I4").Value = ds_ProblemServ_SUMM.Tables[0].Rows.Count;
+
+            ws2.Cell("K4").Value = timeStamp;
 
             ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[0].TableName = "All_SERV";
             ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[1].TableName = "Without_AD";
             ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[2].TableName = "Without_SCCM";
             ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO.Tables[3].TableName = "Without_AVPO";
 
-            workbook.Worksheets.Add(ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO);
+            workbook1.Worksheets.Add(ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO);
 
+            ds_ProblemServ_ProblemAVPO.Tables[0].TableName = "KES_Old_Client";
+            ds_ProblemServ_ProblemAVPO.Tables[1].TableName = "KES_Old_Base";
             ds_ProblemServ_ProblemAVPO.Tables[2].TableName = "SEP_Old_Client";
             ds_ProblemServ_ProblemAVPO.Tables[3].TableName = "SEP_Old_Base";
 
-            workbook.Worksheets.Add(ds_ProblemServ_ProblemAVPO);
+            if (chb_isKESOnARM.Checked)
+            {
+                workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[2]);
+                workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[3]);
+            }
+            else
+            {
+                workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[0].TableName);
+                workbook.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[1].TableName);
+            }
 
-            workbook.SaveAs("SERV_Rep.xlsx");
+            workbook1.Worksheets.Add(ds_ProblemServ_ProblemAVPO);
+
+            workbook1.SaveAs(tb_TerBank + "SERV_Rep.xlsx");
+
+
+        }
+
+        private void bt_LoadRevision_Click(object sender, EventArgs e)
+        {
+            dgv_Revisions.DataSource = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_REVISION").Tables[0];
+        }
+
+        private void bt_InnerRevision_Click(object sender, EventArgs e)
+        {
+            string terBank = dgv_Revisions.SelectedCells[0].Value.ToString();
+            string timeStamp1= dgv_Revisions.SelectedCells[0].Value.ToString();
+            string timeStamp2= dgv_Revisions.SelectedCells[1].Value.ToString();
+
+            terBank = terBank.Remove(terBank.IndexOf('_'));
+            timeStamp1 = timeStamp1.Substring(timeStamp1.IndexOf('_')+1);
+            timeStamp2 = timeStamp2.Substring(timeStamp2.IndexOf('_')+1);
+
+            DataSet ds_InnerRevision_ARM_AD_SCCM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_INNER_ARM_REVISION", "@TerBankName", terBank, "@TimeStamp1", timeStamp1, "@TimeStamp2", timeStamp2);
+            DataSet ds_InnerRevision_SERV_AD_SCCM = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_INNER_SERV_REVISION", "@TerBankName", tb_TerBank.Text, "@TimeStamp1", timeStamp1, "@TimeStamp2", timeStamp2);
+            DataSet ds_InnerRevision_AVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_INNER_AVPO_REVISION", "@TerBankName", tb_TerBank.Text, "@TimeStamp1", timeStamp1, "@TimeStamp2", timeStamp2);
+
+            
+            ds_InnerRevision_ARM_AD_SCCM.Tables[0].TableName = "Without_AD";
+            ds_InnerRevision_ARM_AD_SCCM.Tables[1].TableName = "Without_SCCM";
+            ds_InnerRevision_ARM_AD_SCCM.Tables[2].TableName = "Without_AVPO";
+
+            ds_InnerRevision_SERV_AD_SCCM.Tables[0].TableName = "Without_AD";
+            ds_InnerRevision_SERV_AD_SCCM.Tables[1].TableName = "Without_SCCM";
+            ds_InnerRevision_SERV_AD_SCCM.Tables[2].TableName = "Without_AVPO";
+
+            //workbook.Worksheets.Add(ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO);
+
+            ds_InnerRevision_AVPO.Tables[0].TableName = "KES_Old_Client";
+            ds_InnerRevision_AVPO.Tables[1].TableName = "KES_Old_Base";
+            ds_InnerRevision_AVPO.Tables[2].TableName = "SEP_Old_Client";
+            ds_InnerRevision_AVPO.Tables[3].TableName = "SEP_Old_Base";
+
+            var workbook3 = new XLWorkbook();
+            
+            workbook3.Worksheets.Add(ds_InnerRevision_ARM_AD_SCCM);
+            workbook3.SaveAs(terBank + "_InnerRevision_ARM_" + timeStamp1 + "_" + timeStamp2+".xlsx");
+
+            workbook3 = new XLWorkbook();
+            
+            workbook3.Worksheets.Add(ds_InnerRevision_SERV_AD_SCCM);
+            workbook3.SaveAs(terBank + "_InnerRevision_SERV_" + timeStamp1 + "_" + timeStamp2 + ".xlsx");
+
+            workbook3 = new XLWorkbook();
+
+            workbook3.Worksheets.Add(ds_InnerRevision_AVPO);
+            workbook3.SaveAs(terBank + "_InnerRevision_AVPO_" + timeStamp1 + "_" + timeStamp2 + ".xlsx");
+
+
+
 
 
         }

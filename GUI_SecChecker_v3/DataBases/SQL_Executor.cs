@@ -16,6 +16,7 @@ namespace GUI_SecChecker_v3.DataBases
                 using (SqlCommand cmd = new SqlCommand(spuName, con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
 
                     for (int i = 0; i<paramsAndValue.Length-1; i=i+2)
                     {
@@ -25,7 +26,26 @@ namespace GUI_SecChecker_v3.DataBases
                     
 
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    //for (int i = 0; i < 10; i++)
+                    //{
+                    bool isError = true;
+                    int counter = 0;
+                    while (isError!=false || counter == 10)
+                    {
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            isError = false;
+                        }
+                        catch { }
+                        counter++;
+
+
+                    }
+                        
+                    //}
+                    
+                    
                 }
             }
         }

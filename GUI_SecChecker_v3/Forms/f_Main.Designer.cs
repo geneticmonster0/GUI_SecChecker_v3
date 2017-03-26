@@ -42,7 +42,7 @@
             this.tb_PathKESReport = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.bt_SortArmAndServ = new System.Windows.Forms.Button();
+            this.bt_LoadRevision = new System.Windows.Forms.Button();
             this.bt_ExportEachResultToExcel = new System.Windows.Forms.Button();
             this.bt_CreateReport = new System.Windows.Forms.Button();
             this.bt_GetAllHost = new System.Windows.Forms.Button();
@@ -59,6 +59,10 @@
             this.bt_BrowseADOmegaReport = new System.Windows.Forms.Button();
             this.tb_PathADOmegaReport = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.chb_isKESOnARM = new System.Windows.Forms.CheckBox();
+            this.dgv_Revisions = new System.Windows.Forms.DataGridView();
+            this.bt_InnerRevision = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Revisions)).BeginInit();
             this.SuspendLayout();
             // 
             // bt_TestSQLCon
@@ -115,8 +119,7 @@
             this.tb_PathSCCMReport.Name = "tb_PathSCCMReport";
             this.tb_PathSCCMReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathSCCMReport.TabIndex = 46;
-            this.tb_PathSCCMReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\SC" +
-    "CM\\SCCM.csv";
+            this.tb_PathSCCMReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\SCCM";
             // 
             // bt_BrowseKESReport
             // 
@@ -134,8 +137,7 @@
             this.tb_PathADReport.Name = "tb_PathADReport";
             this.tb_PathADReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathADReport.TabIndex = 47;
-            this.tb_PathADReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\AD" +
-    "\\All_Comps_hq.szb.sbrf.ru.csv";
+            this.tb_PathADReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\AD";
             // 
             // tb_PathSumReport
             // 
@@ -150,8 +152,7 @@
             this.tb_PathSEPReport.Name = "tb_PathSEPReport";
             this.tb_PathSEPReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathSEPReport.TabIndex = 43;
-            this.tb_PathSEPReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\SE" +
-    "P\\computer_status_export_60BB1FC54548471596E0F75DF2CF674C.csv";
+            this.tb_PathSEPReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\SEP";
             // 
             // label14
             // 
@@ -168,8 +169,7 @@
             this.tb_PathKESReport.Name = "tb_PathKESReport";
             this.tb_PathKESReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathKESReport.TabIndex = 45;
-            this.tb_PathKESReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\KS" +
-    "C\\sksc-06.csv";
+            this.tb_PathKESReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\KES";
             // 
             // label19
             // 
@@ -189,15 +189,15 @@
             this.label12.TabIndex = 32;
             this.label12.Text = "Path To SEP Report";
             // 
-            // bt_SortArmAndServ
+            // bt_LoadRevision
             // 
-            this.bt_SortArmAndServ.Enabled = false;
-            this.bt_SortArmAndServ.Location = new System.Drawing.Point(757, 327);
-            this.bt_SortArmAndServ.Name = "bt_SortArmAndServ";
-            this.bt_SortArmAndServ.Size = new System.Drawing.Size(75, 56);
-            this.bt_SortArmAndServ.TabIndex = 54;
-            this.bt_SortArmAndServ.Text = "bt_SortArmAndServ";
-            this.bt_SortArmAndServ.UseVisualStyleBackColor = true;
+            this.bt_LoadRevision.Location = new System.Drawing.Point(938, 484);
+            this.bt_LoadRevision.Name = "bt_LoadRevision";
+            this.bt_LoadRevision.Size = new System.Drawing.Size(75, 56);
+            this.bt_LoadRevision.TabIndex = 54;
+            this.bt_LoadRevision.Text = "Показать все проверки";
+            this.bt_LoadRevision.UseVisualStyleBackColor = true;
+            this.bt_LoadRevision.Click += new System.EventHandler(this.bt_LoadRevision_Click);
             // 
             // bt_ExportEachResultToExcel
             // 
@@ -271,8 +271,7 @@
             this.tb_PathMPReport.Name = "tb_PathMPReport";
             this.tb_PathMPReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathMPReport.TabIndex = 44;
-            this.tb_PathMPReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\MP" +
-    "\\p1.csv";
+            this.tb_PathMPReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\MP";
             // 
             // label9
             // 
@@ -316,7 +315,7 @@
             this.tb_TerBank.Name = "tb_TerBank";
             this.tb_TerBank.Size = new System.Drawing.Size(100, 20);
             this.tb_TerBank.TabIndex = 70;
-            this.tb_TerBank.Text = "SZB";
+            this.tb_TerBank.Text = "CCHB";
             // 
             // bt_BrowseADOmegaReport
             // 
@@ -333,8 +332,7 @@
             this.tb_PathADOmegaReport.Name = "tb_PathADOmegaReport";
             this.tb_PathADOmegaReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathADOmegaReport.TabIndex = 72;
-            this.tb_PathADOmegaReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\temp\\proverki\\proverki\\By_Date\\2016-11-15\\SZB\\AD" +
-    "\\All_Comps_hq.szb.sbrf.ru.csv";
+            this.tb_PathADOmegaReport.Text = "Z:\\Downloads\\2017-03-22\\data\\OMEGA\\AD";
             // 
             // label1
             // 
@@ -345,11 +343,42 @@
             this.label1.TabIndex = 71;
             this.label1.Text = "AD OMEGA";
             // 
+            // chb_isKESOnARM
+            // 
+            this.chb_isKESOnARM.AutoSize = true;
+            this.chb_isKESOnARM.Location = new System.Drawing.Point(413, 298);
+            this.chb_isKESOnARM.Name = "chb_isKESOnARM";
+            this.chb_isKESOnARM.Size = new System.Drawing.Size(94, 17);
+            this.chb_isKESOnARM.TabIndex = 74;
+            this.chb_isKESOnARM.Text = "KES на АРМ?";
+            this.chb_isKESOnARM.UseVisualStyleBackColor = true;
+            // 
+            // dgv_Revisions
+            // 
+            this.dgv_Revisions.AllowUserToOrderColumns = true;
+            this.dgv_Revisions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Revisions.Location = new System.Drawing.Point(938, 59);
+            this.dgv_Revisions.Name = "dgv_Revisions";
+            this.dgv_Revisions.Size = new System.Drawing.Size(476, 419);
+            this.dgv_Revisions.TabIndex = 75;
+            // 
+            // bt_InnerRevision
+            // 
+            this.bt_InnerRevision.Location = new System.Drawing.Point(1047, 484);
+            this.bt_InnerRevision.Name = "bt_InnerRevision";
+            this.bt_InnerRevision.Size = new System.Drawing.Size(75, 56);
+            this.bt_InnerRevision.TabIndex = 53;
+            this.bt_InnerRevision.Text = "Сравнить две проверки";
+            this.bt_InnerRevision.UseVisualStyleBackColor = true;
+            this.bt_InnerRevision.Click += new System.EventHandler(this.bt_InnerRevision_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(963, 648);
+            this.ClientSize = new System.Drawing.Size(1438, 648);
+            this.Controls.Add(this.dgv_Revisions);
+            this.Controls.Add(this.chb_isKESOnARM);
             this.Controls.Add(this.bt_BrowseADOmegaReport);
             this.Controls.Add(this.tb_PathADOmegaReport);
             this.Controls.Add(this.label1);
@@ -368,7 +397,8 @@
             this.Controls.Add(this.tb_PathKESReport);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.bt_SortArmAndServ);
+            this.Controls.Add(this.bt_LoadRevision);
+            this.Controls.Add(this.bt_InnerRevision);
             this.Controls.Add(this.bt_ExportEachResultToExcel);
             this.Controls.Add(this.bt_CreateReport);
             this.Controls.Add(this.bt_GetAllHost);
@@ -383,6 +413,7 @@
             this.Controls.Add(this.label6);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Revisions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,7 +435,7 @@
         private System.Windows.Forms.TextBox tb_PathKESReport;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button bt_SortArmAndServ;
+        private System.Windows.Forms.Button bt_LoadRevision;
         private System.Windows.Forms.Button bt_ExportEachResultToExcel;
         private System.Windows.Forms.Button bt_CreateReport;
         private System.Windows.Forms.Button bt_GetAllHost;
@@ -421,6 +452,9 @@
         private System.Windows.Forms.Button bt_BrowseADOmegaReport;
         private System.Windows.Forms.TextBox tb_PathADOmegaReport;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chb_isKESOnARM;
+        private System.Windows.Forms.DataGridView dgv_Revisions;
+        private System.Windows.Forms.Button bt_InnerRevision;
     }
 }
 
