@@ -36,9 +36,10 @@ namespace GUI_SecChecker_v3.DataBases
                         {
                             cmd.ExecuteNonQuery();
                             isError = false;
+                            counter++;
                         }
                         catch { }
-                        counter++;
+                        
 
 
                     }

@@ -119,7 +119,7 @@
             this.tb_PathSCCMReport.Name = "tb_PathSCCMReport";
             this.tb_PathSCCMReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathSCCMReport.TabIndex = 46;
-            this.tb_PathSCCMReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\SCCM";
+            this.tb_PathSCCMReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\2016-11-15\\SZB\\SCCM";
             // 
             // bt_BrowseKESReport
             // 
@@ -137,7 +137,7 @@
             this.tb_PathADReport.Name = "tb_PathADReport";
             this.tb_PathADReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathADReport.TabIndex = 47;
-            this.tb_PathADReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\AD";
+            this.tb_PathADReport.Text = "Z:\\Downloads\\2017-04-21\\Data\\SZB\\AD";
             // 
             // tb_PathSumReport
             // 
@@ -152,7 +152,7 @@
             this.tb_PathSEPReport.Name = "tb_PathSEPReport";
             this.tb_PathSEPReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathSEPReport.TabIndex = 43;
-            this.tb_PathSEPReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\SEP";
+            this.tb_PathSEPReport.Text = "Z:\\Downloads\\2017-04-21\\Data\\SZB\\SEP";
             // 
             // label14
             // 
@@ -169,7 +169,7 @@
             this.tb_PathKESReport.Name = "tb_PathKESReport";
             this.tb_PathKESReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathKESReport.TabIndex = 45;
-            this.tb_PathKESReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\KES";
+            this.tb_PathKESReport.Text = "Z:\\Downloads\\2017-04-21\\Data\\SZB\\KES";
             // 
             // label19
             // 
@@ -262,7 +262,7 @@
             this.tb_PathMPReport.Name = "tb_PathMPReport";
             this.tb_PathMPReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathMPReport.TabIndex = 44;
-            this.tb_PathMPReport.Text = "Z:\\Downloads\\2017-03-22\\data\\CCHB\\MP";
+            this.tb_PathMPReport.Text = "Z:\\Downloads\\2017-04-21\\Data\\SZB\\MP";
             // 
             // label9
             // 
@@ -306,7 +306,7 @@
             this.tb_TerBank.Name = "tb_TerBank";
             this.tb_TerBank.Size = new System.Drawing.Size(100, 20);
             this.tb_TerBank.TabIndex = 70;
-            this.tb_TerBank.Text = "CCHB";
+            this.tb_TerBank.Text = "SZB";
             // 
             // bt_BrowseADOmegaReport
             // 
@@ -323,7 +323,7 @@
             this.tb_PathADOmegaReport.Name = "tb_PathADOmegaReport";
             this.tb_PathADOmegaReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathADOmegaReport.TabIndex = 72;
-            this.tb_PathADOmegaReport.Text = "Z:\\Downloads\\2017-03-22\\data\\OMEGA\\AD";
+            this.tb_PathADOmegaReport.Text = "Z:\\Downloads\\2017-04-21\\Data\\OMEGA\\AD";
             // 
             // label1
             // 
@@ -337,6 +337,8 @@
             // chb_isKESOnARM
             // 
             this.chb_isKESOnARM.AutoSize = true;
+            this.chb_isKESOnARM.Checked = true;
+            this.chb_isKESOnARM.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chb_isKESOnARM.Location = new System.Drawing.Point(413, 298);
             this.chb_isKESOnARM.Name = "chb_isKESOnARM";
             this.chb_isKESOnARM.Size = new System.Drawing.Size(94, 17);

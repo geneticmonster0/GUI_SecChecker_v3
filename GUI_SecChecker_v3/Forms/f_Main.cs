@@ -137,7 +137,7 @@ namespace GUI_SecChecker_v3
 
             DataSet ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_AD_SCCM", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
-            DataSet ds_ProblemArm_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_AVPO", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            DataSet ds_ProblemArm_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_AVPO", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
             DataSet ds_ProblemArm_SUMM;
 
@@ -203,7 +203,7 @@ namespace GUI_SecChecker_v3
 
             DataSet ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_AD_SCCM", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
-            DataSet ds_ProblemServ_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_AVPO", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            DataSet ds_ProblemServ_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_AVPO", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
             DataSet ds_ProblemServ_SUMM;
 
@@ -256,13 +256,13 @@ namespace GUI_SecChecker_v3
 
             if (chb_isKESOnARM.Checked)
             {
-                workbook1.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[2]);
-                workbook1.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[3]);
+                workbook1.Worksheets.Add(ds_ProblemServ_ProblemAVPO.Tables[2]);
+                workbook1.Worksheets.Add(ds_ProblemServ_ProblemAVPO.Tables[3]);
             }
             else
             {
-                workbook1.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[0]);
-                workbook1.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[1]);
+                workbook1.Worksheets.Add(ds_ProblemServ_ProblemAVPO.Tables[0]);
+                workbook1.Worksheets.Add(ds_ProblemServ_ProblemAVPO.Tables[1]);
             }
 
             
@@ -329,6 +329,7 @@ namespace GUI_SecChecker_v3
 
         }
 
+
         private void bt_Export_Selected_Revision_Click(object sender, EventArgs e)
         {
             string terBank = dgv_Revisions.SelectedCells[0].Value.ToString();
@@ -341,7 +342,7 @@ namespace GUI_SecChecker_v3
 
             DataSet ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_AD_SCCM", "@TerBankName", terBank, "@TimeStamp", timeStamp);
 
-            DataSet ds_ProblemArm_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_AVPO", "@TerBankName", terBank, "@TimeStamp", timeStamp);
+            DataSet ds_ProblemArm_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_AVPO", "@TerBankName", terBank, "@TimeStamp", timeStamp);
 
             DataSet ds_ProblemArm_SUMM;
 
@@ -407,7 +408,7 @@ namespace GUI_SecChecker_v3
 
             DataSet ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_AD_SCCM", "@TerBankName", terBank, "@TimeStamp", timeStamp);
 
-            DataSet ds_ProblemServ_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_AVPO", "@TerBankName", terBank, "@TimeStamp", timeStamp);
+            DataSet ds_ProblemServ_ProblemAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_AVPO", "@TerBankName", terBank, "@TimeStamp", timeStamp);
 
             DataSet ds_ProblemServ_SUMM;
 
