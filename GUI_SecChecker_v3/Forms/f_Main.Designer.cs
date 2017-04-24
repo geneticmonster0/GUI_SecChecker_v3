@@ -119,7 +119,7 @@
             this.tb_PathSCCMReport.Name = "tb_PathSCCMReport";
             this.tb_PathSCCMReport.Size = new System.Drawing.Size(209, 20);
             this.tb_PathSCCMReport.TabIndex = 46;
-            this.tb_PathSCCMReport.Text = "C:\\Users\\geneticmonster0\\Desktop\\2016-11-15\\SZB\\SCCM";
+            this.tb_PathSCCMReport.Text = "Z:\\Downloads\\2017-04-21\\Data\\SRB\\SCCM";
             // 
             // bt_BrowseKESReport
             // 

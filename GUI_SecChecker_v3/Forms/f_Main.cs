@@ -126,14 +126,14 @@ namespace GUI_SecChecker_v3
                 SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_Insert_SEP", "@TableName", tblSEPName, "@FilePath", file.FullName);
             }
 
-
+            MessageBox.Show("Load Done!");
 
         }
 
         private void bt_CreateReport_Click(object sender, EventArgs e)
         {
             //timeStamp = "2017_03_17T17_27_14";
-            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_SELECT_PROBLEM_HOSTS", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
+            SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_INSERT_PROBLEM_HOSTS", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
             DataSet ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_AD_SCCM", "@TerBankName", tb_TerBank.Text, "@TimeStamp", timeStamp);
 
@@ -269,7 +269,7 @@ namespace GUI_SecChecker_v3
 
             workbook1.SaveAs(tb_TerBank.Text + "_SERV_Rep_"+ timeStamp + ".xlsx");
 
-
+            MessageBox.Show("REPORTED!");
         }
 
         private void bt_LoadRevision_Click(object sender, EventArgs e)
@@ -338,7 +338,7 @@ namespace GUI_SecChecker_v3
             terBank = terBank.Remove(terBank.IndexOf('_'));
             timeStamp = timeStamp.Substring(timeStamp.IndexOf('_') + 1);
 
-            //SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_SELECT_PROBLEM_HOSTS", "@TerBankName", terBank, "@TimeStamp", timeStamp);
+            //SQL_Executor.Exec_SPU_With_Multple_Parameters_NoReturn(connString, "SPU_INSERT_PROBLEM_HOSTS", "@TerBankName", terBank, "@TimeStamp", timeStamp);
 
             DataSet ds_ProblemArm_AllArm_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_ARM_AD_SCCM", "@TerBankName", terBank, "@TimeStamp", timeStamp);
 
@@ -403,7 +403,7 @@ namespace GUI_SecChecker_v3
             }
 
 
-            workbook.SaveAs(tb_TerBank.Text + "_ARM_Rep_"+timeStamp+".xlsx");
+            workbook.SaveAs(terBank + "_ARM_Rep_"+timeStamp+".xlsx");
 
 
             DataSet ds_ProblemServ_AllSERV_Ad_Sccm_WithoutAVPO = SQL_Executor.Exec_SPU_With_Multple_Parameters_Return_DS(connString, "SPU_SELECT_PROBLEM_SERV_AD_SCCM", "@TerBankName", terBank, "@TimeStamp", timeStamp);
@@ -461,18 +461,18 @@ namespace GUI_SecChecker_v3
 
             if (chb_isKESOnARM.Checked)
             {
-                workbook1.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[2]);
-                workbook1.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[3]);
+                workbook1.Worksheets.Add(ds_ProblemServ_ProblemAVPO.Tables[2]);
+                workbook1.Worksheets.Add(ds_ProblemServ_ProblemAVPO.Tables[3]);
             }
             else
             {
-                workbook1.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[0]);
-                workbook1.Worksheets.Add(ds_ProblemArm_ProblemAVPO.Tables[1]);
+                workbook1.Worksheets.Add(ds_ProblemServ_ProblemAVPO.Tables[0]);
+                workbook1.Worksheets.Add(ds_ProblemServ_ProblemAVPO.Tables[1]);
             }
 
-            
 
-            workbook1.SaveAs(tb_TerBank.Text + "_SERV_Rep_" + timeStamp + ".xlsx");
+
+            workbook1.SaveAs(terBank + "_SERV_Rep_" + timeStamp + ".xlsx");
         }
     }
 }
