@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.bt_TestSQLCon = new System.Windows.Forms.Button();
             this.bt_BrowseSCCMReport = new System.Windows.Forms.Button();
             this.bt_BrowseADReport = new System.Windows.Forms.Button();
@@ -62,7 +63,18 @@
             this.dgv_Revisions = new System.Windows.Forms.DataGridView();
             this.bt_InnerRevision = new System.Windows.Forms.Button();
             this.bt_Export_Selected_Revision = new System.Windows.Forms.Button();
+            this.dgv_Filters = new System.Windows.Forms.DataGridView();
+            this.db_SecCheckerDataSet = new GUI_SecChecker_v3.db_SecCheckerDataSet();
+            this.vARIABLESBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.vARIABLESTableAdapter = new GUI_SecChecker_v3.db_SecCheckerDataSetTableAdapters.VARIABLESTableAdapter();
+            this.varnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.varvalueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vardescDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bt_SaveFilters = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Revisions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Filters)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.db_SecCheckerDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vARIABLESBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // bt_TestSQLCon
@@ -354,7 +366,7 @@
             this.dgv_Revisions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv_Revisions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgv_Revisions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Revisions.Location = new System.Drawing.Point(938, 59);
+            this.dgv_Revisions.Location = new System.Drawing.Point(917, 56);
             this.dgv_Revisions.Name = "dgv_Revisions";
             this.dgv_Revisions.Size = new System.Drawing.Size(476, 419);
             this.dgv_Revisions.TabIndex = 75;
@@ -379,11 +391,74 @@
             this.bt_Export_Selected_Revision.UseVisualStyleBackColor = true;
             this.bt_Export_Selected_Revision.Click += new System.EventHandler(this.bt_Export_Selected_Revision_Click);
             // 
+            // dgv_Filters
+            // 
+            this.dgv_Filters.AllowUserToAddRows = false;
+            this.dgv_Filters.AllowUserToDeleteRows = false;
+            this.dgv_Filters.AutoGenerateColumns = false;
+            this.dgv_Filters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_Filters.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgv_Filters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Filters.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.varnameDataGridViewTextBoxColumn,
+            this.varvalueDataGridViewTextBoxColumn,
+            this.vardescDataGridViewTextBoxColumn});
+            this.dgv_Filters.DataSource = this.vARIABLESBindingSource;
+            this.dgv_Filters.Location = new System.Drawing.Point(22, 642);
+            this.dgv_Filters.Margin = new System.Windows.Forms.Padding(20);
+            this.dgv_Filters.Name = "dgv_Filters";
+            this.dgv_Filters.Size = new System.Drawing.Size(1100, 251);
+            this.dgv_Filters.TabIndex = 76;
+            // 
+            // db_SecCheckerDataSet
+            // 
+            this.db_SecCheckerDataSet.DataSetName = "db_SecCheckerDataSet";
+            this.db_SecCheckerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // vARIABLESBindingSource
+            // 
+            this.vARIABLESBindingSource.DataMember = "VARIABLES";
+            this.vARIABLESBindingSource.DataSource = this.db_SecCheckerDataSet;
+            // 
+            // vARIABLESTableAdapter
+            // 
+            this.vARIABLESTableAdapter.ClearBeforeFill = true;
+            // 
+            // varnameDataGridViewTextBoxColumn
+            // 
+            this.varnameDataGridViewTextBoxColumn.DataPropertyName = "var_name";
+            this.varnameDataGridViewTextBoxColumn.HeaderText = "var_name";
+            this.varnameDataGridViewTextBoxColumn.Name = "varnameDataGridViewTextBoxColumn";
+            // 
+            // varvalueDataGridViewTextBoxColumn
+            // 
+            this.varvalueDataGridViewTextBoxColumn.DataPropertyName = "var_value";
+            this.varvalueDataGridViewTextBoxColumn.HeaderText = "var_value";
+            this.varvalueDataGridViewTextBoxColumn.Name = "varvalueDataGridViewTextBoxColumn";
+            // 
+            // vardescDataGridViewTextBoxColumn
+            // 
+            this.vardescDataGridViewTextBoxColumn.DataPropertyName = "var_desc";
+            this.vardescDataGridViewTextBoxColumn.HeaderText = "var_desc";
+            this.vardescDataGridViewTextBoxColumn.Name = "vardescDataGridViewTextBoxColumn";
+            // 
+            // bt_SaveFilters
+            // 
+            this.bt_SaveFilters.Location = new System.Drawing.Point(1155, 681);
+            this.bt_SaveFilters.Name = "bt_SaveFilters";
+            this.bt_SaveFilters.Size = new System.Drawing.Size(75, 56);
+            this.bt_SaveFilters.TabIndex = 54;
+            this.bt_SaveFilters.Text = "Сохранить изменение фильтров";
+            this.bt_SaveFilters.UseVisualStyleBackColor = true;
+            this.bt_SaveFilters.Click += new System.EventHandler(this.bt_SaveFilters_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1438, 648);
+            this.Controls.Add(this.dgv_Filters);
             this.Controls.Add(this.dgv_Revisions);
             this.Controls.Add(this.chb_isKESOnARM);
             this.Controls.Add(this.bt_BrowseADOmegaReport);
@@ -404,6 +479,7 @@
             this.Controls.Add(this.tb_PathKESReport);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label12);
+            this.Controls.Add(this.bt_SaveFilters);
             this.Controls.Add(this.bt_LoadRevision);
             this.Controls.Add(this.bt_Export_Selected_Revision);
             this.Controls.Add(this.bt_InnerRevision);
@@ -420,7 +496,11 @@
             this.Controls.Add(this.label6);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Revisions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Filters)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.db_SecCheckerDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vARIABLESBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -462,6 +542,14 @@
         private System.Windows.Forms.DataGridView dgv_Revisions;
         private System.Windows.Forms.Button bt_InnerRevision;
         private System.Windows.Forms.Button bt_Export_Selected_Revision;
+        private System.Windows.Forms.DataGridView dgv_Filters;
+        private db_SecCheckerDataSet db_SecCheckerDataSet;
+        private System.Windows.Forms.BindingSource vARIABLESBindingSource;
+        private db_SecCheckerDataSetTableAdapters.VARIABLESTableAdapter vARIABLESTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn varnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn varvalueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vardescDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button bt_SaveFilters;
     }
 }
 

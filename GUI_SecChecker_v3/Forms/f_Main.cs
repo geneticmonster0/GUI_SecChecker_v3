@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
@@ -20,6 +21,15 @@ namespace GUI_SecChecker_v3
     {
         string timeStamp;
         string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Z:\Dropbox\Projects\Windows\C#_UB\GUI_SecChecker_v3\GUI_SecChecker_v3\GUI_SecChecker_v3\DataBases\db_SecChecker.mdf;Integrated Security=True";
+
+        private String connectionString = null;
+        private SqlConnection sqlConnection = null;
+        private SqlDataAdapter sqlDataAdapter = null;
+        private SqlCommandBuilder sqlCommandBuilder = null;
+        private DataTable dataTable = null;
+        private BindingSource bindingSource = null;
+        private String selectQueryString = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -474,5 +484,42 @@ namespace GUI_SecChecker_v3
 
             workbook1.SaveAs(terBank + "_SERV_Rep_" + timeStamp + ".xlsx");
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'db_SecCheckerDataSet.VARIABLES' table. You can move, or remove it, as needed.
+            //this.vARIABLESTableAdapter.Fill(this.db_SecCheckerDataSet.VARIABLES);
+            connectionString = connString;
+            sqlConnection = new SqlConnection(connectionString);
+            selectQueryString = "SELECT * FROM VARIABLES";
+
+            sqlConnection.Open();
+
+            sqlDataAdapter = new SqlDataAdapter(selectQueryString, sqlConnection);
+            sqlCommandBuilder = new SqlCommandBuilder(sqlDataAdapter);
+
+            dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+            bindingSource = new BindingSource();
+            bindingSource.DataSource = dataTable;
+
+            dgv_Filters.DataSource = bindingSource;
+
+        }
+
+        private void bt_SaveFilters_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlDataAdapter.Update(dataTable);
+            }
+            catch (Exception exceptionObj)
+            {
+                MessageBox.Show(exceptionObj.Message.ToString());
+            }
+
+        }
+
+        
     }
 }

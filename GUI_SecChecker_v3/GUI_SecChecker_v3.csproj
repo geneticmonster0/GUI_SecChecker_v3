@@ -65,6 +65,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBases\SQL_Executor.cs" />
+    <Compile Include="db_SecCheckerDataSet.cs">
+      <DependentUpon>db_SecCheckerDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="db_SecCheckerDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_SecCheckerDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\f_Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +93,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
+    <None Include="db_SecCheckerDataSet.xsc">
+      <DependentUpon>db_SecCheckerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="db_SecCheckerDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>db_SecCheckerDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="db_SecCheckerDataSet.xss">
+      <DependentUpon>db_SecCheckerDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
